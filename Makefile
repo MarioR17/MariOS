@@ -1,6 +1,6 @@
 # Toolchain Setup
 CC = aarch64-none-elf-gcc
-OBJCOPY = aarch64-none-elf-gcc-objcopy
+OBJCOPY = aarch64-none-elf-objcopy
 
 # Compilation Flags
 # -g: Debug info for gdb
@@ -30,12 +30,12 @@ kernel.elf: $(OBJS) link.ld
 	$(CC) $(CFLAGS) -T link.ld -o kernel.elf $(OBJS)
 
 # Compile C Files
-build/%.c.o: src/%.c:
+build/%.o: src/%.c
 	@mkdir -p build
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Compile Assembly Files
-build/%.S.o: src/%.S:
+build/%.o: src/%.S
 	@mkdir -p build
 	$(CC) $(CFLAGS) -c $< -o $@
 
