@@ -11,9 +11,12 @@ OBJCOPY = aarch64-none-elf-gcc-objcopy
 # -nostdlib: Do not like standard libraries
 CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -mcpu=cortex-a72 -g
 
-# Source and Object Files
-SRCS = $(wildcard src/*.c) $(wildcard src/*.S)
-OBJS = $(SRCS:src/%=build/%.o)
+# Source Files
+C_SRCS = $(wildcard src/*.c)
+ASM_SRCS = $(wildcard src/*.S)
+
+# Object Files
+OBJS = $(C_SRCS:src/%.c=build/%.o) $(ASM_SRCS:src/%.S=build/%.o)
 
 # Default Target
 all: kernel8.img
