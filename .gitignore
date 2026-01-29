@@ -1,0 +1,11 @@
+# Build Artifacts
+build/
+*.o
+*.elf
+*.img
+*.list
+*.map
+
+# System Junk
+.DS_Store
+dist/
