@@ -3,7 +3,7 @@ ENTRY(_start)
 SECTIONS
 {
         /* Raspberry Pi 64-bit kernel starting address */
-        . = x80000;
+        . = 0x80000;
 
         /* Executable code (.text) segment */
         .text : {

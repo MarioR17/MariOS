@@ -3,5 +3,5 @@
 
 _start:
         /* low power hang loop for now */
-        wfe             /* wait for event (lower power sleep)
+        wfe             /* wait for event (lower power sleep) */
         b _start        /* loop forever */
