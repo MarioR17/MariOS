@@ -1,6 +1,6 @@
 # Toolchain Setup
-CC = aarch64-none-elf-gcc
-OBJCOPY = aarch64-none-elf-objcopy
+CC = aarch64-elf-gcc
+OBJCOPY = aarch64-elf-objcopy
 
 # Compilation Flags
 # -g: Debug info for gdb
@@ -9,7 +9,7 @@ OBJCOPY = aarch64-none-elf-objcopy
 # -ffreestanding: Tell gcc no libc
 # -nostdinc: Do not look for standard headers
 # -nostdlib: Do not like standard libraries
-CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -mcpu=cortex-a72 -g
+CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -mcpu=cortex-a72 -g -Iinclude
 
 # Source Files
 C_SRCS = $(wildcard src/*.c)
@@ -43,6 +43,10 @@ build/%.o: src/%.S
 clean:
 	rm -rf build kernel.elf kernel8.img
 
-# Run in QEMU
+# Run in QEMU (With GUI)
 run: kernel8.img
 	qemu-system-aarch64 -M raspi4b -serial stdio -kernel kernel8.img
+
+# Run in QEMU (Without GUI)
+run-term: kernel8.img
+	qemu-system-aarch64 -M raspi4b -nographic -kernel kernel8.img
